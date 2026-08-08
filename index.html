@@ -305,24 +305,23 @@
         .kahoot-btn {
             background-color: #4617B4;
             color: #ffffff;
-            font-size: 2.2rem;
-            font-weight: 900;
-            padding: 20px 50px;
-            border-radius: 50px;
+            font-size: 1.35rem;
+            font-weight: bold;
+            padding: 14px 32px;
+            border-radius: 40px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(70, 23, 180, 0.4);
+            box-shadow: 0 8px 20px rgba(70, 23, 180, 0.3);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 10px;
         }
 
         .kahoot-btn:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 15px 35px rgba(70, 23, 180, 0.6);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 12px 25px rgba(70, 23, 180, 0.5);
             background-color: #5B25D9;
         }
     </style>
@@ -567,16 +566,31 @@
 
     <!-- 頁面 8：【Kahoot 有獎徵答頁面】-->
     <div class="slide">
-        <h1 style="color: #4617B4; font-size: 3.2rem;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
-        <p style="font-size: 1.5rem; font-weight: bold; margin-top: 15px;" contenteditable="true">拿起手機，挑戰原鄉文化與旅遊小知識！</p>
+        <h1 style="color: #4617B4; font-size: 2.8rem; margin-bottom: 10px;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
+        <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;" contenteditable="true">【安捷旅行】跟著莉梅姐玩原鄉有獎徵答</p>
 
-        <a href="https://play.kahoot.it/v2/lobby?quizId=f3dba909-f99b-4433-9930-6ae050bfee44" target="_blank" class="kahoot-btn">
-            🚀 點擊開啟大螢幕遊戲大廳 (Host)
-        </a>
+        <div style="background: rgba(255, 255, 255, 0.95); border: 3px solid #4617B4; border-radius: 20px; padding: 25px 40px; max-width: 850px; display: flex; align-items: center; gap: 35px; box-shadow: 0 10px 30px rgba(70, 23, 180, 0.2);">
+            
+            <!-- 現場民眾手機掃碼開啟 kahoot.it -->
+            <div style="text-align: center;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://kahoot.it" alt="Kahoot 玩家加入 QR Code" style="width: 180px; height: 180px; border-radius: 12px; border: 3px solid #4617B4; padding: 6px; background: #fff;">
+                <p style="margin-top: 8px; font-weight: bold; color: #4617B4; font-size: 1rem;">📱 掃碼開啟 kahoot.it</p>
+            </div>
 
-        <p style="margin-top: 25px; color: #666; font-size: 1.1rem;" contenteditable="true">
-            （點擊上方按鈕直接開啟 Kahoot 廣播大廳，顯示 PIN 碼讓現場貴賓加入遊戲）
-        </p>
+            <div style="text-align: left; flex: 1;">
+                <p style="font-size: 1.25rem; font-weight: bold; color: #333; margin-bottom: 8px;">
+                    1️⃣ 現場貴賓請手機掃描左側 QR Code 或輸入 <span style="color: #4617B4;">kahoot.it</span>
+                </p>
+                <p style="font-size: 1.05rem; color: #555; margin-bottom: 20px; line-height: 1.5;">
+                    2️⃣ 主持人點擊下方按鈕啟動大螢幕，現場民眾輸入畫面上顯示的 <b>PIN 碼</b> 即可加入對戰！
+                </p>
+
+                <!-- 大螢幕主持人開啟遊戲大廳按鈕 (帶 hostId) -->
+                <a href="https://play.kahoot.it/v2/?quizId=f3dba909-f99b-4433-9930-6ae050bfee44&hostId=0b44aa4a-8817-41d5-b07d-7516b815b7d0" target="_blank" class="kahoot-btn">
+                    🚀 開啟大螢幕主持大廳 (Host)
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- 頁面 9：【互動 4 & 結語】攤位引導 (999) -->

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安捷國際旅行社 - 高齡健康產業博覽會互動簡報</title>
+    <style>
+        :root {
+            --atayal-red: #8B261D;
+            --paiwan-gold: #C68B34;
+            --bunun-green: #1E3A2B;
+            --amis-orange: #D9532F;
+            --tribal-cream: #F9F6F0;
+            --text-dark: #231F1D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            background-color: #12100F;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 簡報主容器 (16:9 螢幕比例) */
+        .slide-container {
+            width: 100vw;
+            height: 56.25vw;
+            max-width: 177.78vh;
+            max-height: 100vh;
+            background-color: var(--tribal-cream);
+            position: relative;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        /* 原民織帶與邊框 */
+        .totem-border-top, .totem-border-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--atayal-red), var(--atayal-red) 12px,
+                var(--paiwan-gold) 12px, var(--paiwan-gold) 24px,
+                var(--bunun-green) 24px, var(--bunun-green) 36px,
+                var(--amis-orange) 36px, var(--amis-orange) 48px
+            );
+            z-index: 10;
+        }
+        .totem-border-top { top: 0; }
+        .totem-border-bottom { bottom: 0; }
+
+        /* 頁面切換機制 */
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            text-align: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        [contenteditable="true"]:hover {
+            outline: 2px dashed var(--paiwan-gold);
+            border-radius: 4px;
+        }
+
+        h1 { font-size: 2.8rem; color: var(--atayal-red); margin-bottom: 12px; font-weight: 800; }
+        h2 { font-size: 2.2rem; color: var(--bunun-green); margin-bottom: 18px; font-weight: 700; }
+
+        /* 手繪部落房屋與圖騰背景線稿 */
+        .house-line-art {
+            position: absolute;
+            opacity: 0.18;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .house-left { left: 15px; bottom: 10%; width: 230px; }
+        .house-right { right: 15px; bottom: 10%; width: 230px; }
+
+        /* 滑鼠 Hover 互動效果大卡片 */
+        .interactive-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid var(--paiwan-gold);
+            border-radius: 20px;
+            padding: 25px 45px;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            margin-top: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(198, 139, 52, 0.25);
+            border-color: var(--atayal-red);
+        }
+
+        .qr-image {
+            width: 170px; height: 170px;
+            border-radius: 12px;
+            border: 2px solid var(--bunun-green);
+            object-fit: contain;
+            background: #fff;
+            padding: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .interactive-card:hover .qr-image {
+            transform: scale(1.05);
+        }
+
+        .keyword-badge {
+            background-color: var(--atayal-red);
+            color: #fff;
+            font-size: 3.8rem;
+            font-weight: 900;
+            padding: 6px 32px;
+            border-radius: 16px;
+            letter-spacing: 4px;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 6px 15px rgba(139, 38, 29, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 莉梅姐去背圓形大頭照與卡片 */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .limei-avatar-wrapper {
+            flex: 0 0 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .limei-avatar {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            border: 6px solid var(--paiwan-gold);
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .limei-avatar-wrapper:hover .limei-avatar {
+            transform: scale(1.06) rotate(2deg);
+            border-color: var(--atayal-red);
+        }
+
+        /* Infographic 卡片與 Hover 動畫 */
+        .info-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 25px;
+            gap: 18px;
+            z-index: 5;
+        }
+
+        .flow-step {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 18px;
+            padding: 22px 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            border-top: 6px solid var(--atayal-red);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .flow-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            border-top-color: var(--amis-orange);
+            background: #ffffff;
+        }
+
+        .flow-step .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .flow-step:hover .step-icon {
+            transform: scale(1.2);
+        }
+
+        .flow-step h3 {
+            font-size: 1.35rem;
+            color: var(--atayal-red);
+            margin-bottom: 8px;
+        }
+
+        .flow-step p {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        /* 亮點標籤列表 */
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 15px;
+            max-width: 1050px;
+            z-index: 5;
+        }
+
+        .tag-item {
+            background-color: var(--bunun-green);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 8px 22px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tag-item:hover {
+            transform: scale(1.08);
+            background-color: var(--atayal-red);
+        }
+
+        .tag-item.highlight {
+            background-color: var(--amis-orange);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .btn {
+            background-color: var(--bunun-green);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--amis-orange);
+            transform: scale(1.05);
+        }
+
+        /* Kahoot 按鈕樣式 */
+        .kahoot-btn {
+            background-color: #4617B4;
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 900;
+            padding: 20px 50px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(70, 23, 180, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .kahoot-btn:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(70, 23, 180, 0.6);
+            background-color: #5B25D9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <div class="totem-border-top"></div>
+
+    <!-- 頁面 1：【互動 1】開場破冰 (666) -->
+    <div class="slide active">
+        <h1 contenteditable="true">安捷國際旅行社｜原鄉心靈行旅</h1>
+        <h2 contenteditable="true">專做平日團·避開人潮·外賓級尊榮款待</h2>
+        
+        <div class="interactive-card">
+            <img class="qr-image" src="L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code" onerror="this.src='https://via.placeholder.com/170?text=LINE+QR+Code'">
+            <div>
+                <p style="font-size: 1.4rem; font-weight: bold;" contenteditable="true">1️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <div class="keyword-badge" contenteditable="true">666</div>
+                <p style="color: var(--atayal-red); font-weight: bold; font-size: 1.25rem;" contenteditable="true">👉 點擊抽獎，享受 50% 中獎機會，抽 $500 行程抵用券！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 2：品牌背景與莉梅姐 -->
+    <div class="slide">
+        <h2 contenteditable="true" style="font-size: 2.2rem; color: var(--bunun-green); margin-bottom: 12px; font-weight: 800;">企業級頂級私房行程公開！誠邀質感旅人體驗精品小團</h2>
+        
+        <div class="brand-container">
+            <div class="limei-avatar-wrapper">
+                <img class="limei-avatar" src="莉梅姐.png" alt="靈魂引路人 莉梅姐" onerror="this.src='https://via.placeholder.com/220?text=莉梅姐'">
+                <p style="margin-top: 12px; font-weight: bold; font-size: 1.2rem; color: var(--atayal-red);">靈魂引路人：莉梅姐</p>
+            </div>
+            
+            <div style="flex: 1; text-align: left;">
+                <p style="font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; color: var(--bunun-green); line-height: 1.5;" contenteditable="true">
+                    🌟 深耕旅遊 35 年經驗，源自法國、香港法人企業的獨家訂製規格，這次，為喜愛精緻旅遊的你限量啟航。
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                    <div class="flow-step" style="padding:15px; border-top-width:4px;">
+                        <strong style="color:var(--atayal-red); font-size:1.15rem;">1. 家人般款待</strong><br><span style="font-size:0.95rem;">老朋友般的熱情照顧</span>
+                    </div>
+                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--paiwan-gold);">
+                        <strong style="color:var(--atayal-red); font-size:1.15rem;">2. 團友屬性訪談</strong><br><span style="font-size:0.95rem;">獨旅也能配對舒適夥伴</span>
+                    </div>
+                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--bunun-green);">
+                        <strong style="color:var(--atayal-red); font-size:1.15rem;">3. 視訊說明會</strong><br><span style="font-size:0.95rem;">行前說明在家輕鬆聽</span>
+                    </div>
+                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--amis-orange);">
+                        <strong style="color:var(--atayal-red); font-size:1.15rem;">4. 人生故事交流</strong><br><span style="font-size:0.95rem;">特別梯次星空下分享交流</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 3：【行程一】排灣族石板屋與琉璃百步蛇線稿 -->
+    <div class="slide">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#C68B34" stroke-width="2" fill="none">
+            <polygon points="10,80 10,45 60,20 110,45 110,80" />
+            <line x1="10" y1="45" x2="110" y2="45" />
+            <line x1="30" y1="45" x2="30" y2="80" />
+            <line x1="50" y1="45" x2="50" y2="80" />
+            <line x1="70" y1="45" x2="70" y2="80" />
+            <line x1="90" y1="45" x2="90" y2="80" />
+            <rect x="45" y="55" width="30" height="25" />
+            <polygon points="60,25 70,35 60,45 50,35" stroke="#8B261D" />
+        </svg>
+
+        <svg class="house-line-art house-right" viewBox="0 0 100 100" stroke="#8B261D" stroke-width="2" fill="none">
+            <path d="M10,80 Q30,50 50,80 T90,80" stroke-width="3" />
+            <polygon points="50,15 75,40 50,65 25,40" stroke="#C68B34" />
+        </svg>
+
+        <h2 style="color: var(--atayal-red);" contenteditable="true">1️⃣ 跟著山海去呼吸｜8日心靈行旅</h2>
+        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「想一口氣走遍排灣、布農、阿美、泰雅四大族群嗎？」</p>
+
+        <div class="tag-list">
+            <span class="tag-item highlight">🌲 巨木檜木林</span>
+            <span class="tag-item">🚫 平日管制秘境</span>
+            <span class="tag-item">💨 滿滿高負離子</span>
+            <span class="tag-item">👣 四大族群文化縱貫</span>
+        </div>
+
+        <div class="info-flow">
+            <div class="flow-step">
+                <div class="step-icon">🚌</div>
+                <h3 contenteditable="true">平日專車出發</h3>
+                <p contenteditable="true">避開假日人潮車潮<br>合理的交通時間安排</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">🌲</div>
+                <h3 contenteditable="true">走進管制秘境</h3>
+                <p contenteditable="true">一般人進不去的高負離子<br>巨木檜木森林步道</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">💖</div>
+                <h3 contenteditable="true">心靈徹底放鬆</h3>
+                <p contenteditable="true">無痛補充滿滿精神食糧<br>深度的山海文化對話</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 4：【行程二】干欄式茅草高腳屋與山林浪線 -->
+    <div class="slide">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#1E3A2B" stroke-width="2" fill="none">
+            <line x1="25" y1="50" x2="20" y2="85" />
+            <line x1="45" y1="50" x2="45" y2="85" />
+            <line x1="75" y1="50" x2="75" y2="85" />
+            <line x1="95" y1="50" x2="100" y2="85" />
+            <polygon points="15,50 105,50 60,15" />
+            <rect x="25" y="40" width="70" height="20" />
+            <line x1="15" y1="50" x2="105" y2="50" stroke-width="3" />
+        </svg>
+
+        <h2 style="color: var(--bunun-green);" contenteditable="true">2️⃣ 低碳縱谷·雙湯慢旅｜花東 3日遊</h2>
+        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「出門旅行不想舟車勞頓、想好好泡湯對不對？」</p>
+
+        <div class="tag-list">
+            <span class="tag-item">🚆 搭台鐵換專車</span>
+            <span class="tag-item highlight">♨️ 連泡兩大百年名湯</span>
+            <span class="tag-item">🥗 部落現採蔬食餐桌</span>
+            <span class="tag-item">🧘 放空放慢首選</span>
+        </div>
+
+        <div class="info-flow">
+            <div class="flow-step">
+                <div class="step-icon">🚆</div>
+                <h3 contenteditable="true">舒適搭台鐵</h3>
+                <p contenteditable="true">告別長途開車疲勞<br>當地專車接駁隨行</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">🥗</div>
+                <h3 contenteditable="true">部落產地餐桌</h3>
+                <p contenteditable="true">品嚐現採新鮮蔬食<br>最道地的原鄉風味</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">♨️</div>
+                <h3 contenteditable="true">安通＋知本</h3>
+                <p contenteditable="true">連續體驗兩大百年名湯<br>靜心放空修復身心</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 5：【行程三】泰雅高腳獵寮與櫻花祖靈紋線稿 -->
+    <div class="slide">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#8B261D" stroke-width="2" fill="none">
+            <polygon points="20,40 60,15 100,40" />
+            <rect x="25" y="40" width="70" height="30" />
+            <line x1="30" y1="70" x2="30" y2="90" />
+            <line x1="90" y1="70" x2="90" y2="90" />
+            <polygon points="60,45 70,55 60,65 50,55" stroke="#D9532F" />
+        </svg>
+
+        <h2 style="color: var(--atayal-red);" contenteditable="true">3️⃣ 白蘭櫻花雨｜櫻花樹下泰雅微旅行 2日遊</h2>
+        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「怕去賞櫻花全都是人、拍照全是後腦勺嗎？」</p>
+
+        <div class="tag-list">
+            <span class="tag-item highlight">🌸 提前預約 2027 年場次（2月~3月限定）</span>
+            <span class="tag-item">📅 平日專屬限定梯次</span>
+            <span class="tag-item">🍵 櫻花樹下茶席</span>
+            <span class="tag-item">✨ 山頂浪漫觀星</span>
+        </div>
+
+        <div class="info-flow">
+            <div class="flow-step">
+                <div class="step-icon">🌸</div>
+                <h3 contenteditable="true">經典平日賞櫻</h3>
+                <p contenteditable="true">避開假日賞櫻車潮<br>拍出絕美空景大片</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">🍵</div>
+                <h3 contenteditable="true">樹下浪漫茶席</h3>
+                <p contenteditable="true">櫻花樹下喝下午茶<br>品嚐特色風味小米酒</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">✨</div>
+                <h3 contenteditable="true">星空主題交流</h3>
+                <p contenteditable="true">漫步山林夜間觀星<br>特別梯次主題分享談心</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 6：【行程四】泰雅秘境 -->
+    <div class="slide">
+        <svg class="house-line-art house-left" viewBox="0 0 100 110" stroke="#8B261D" stroke-width="2" fill="none">
+            <line x1="30" y1="20" x2="15" y2="95" />
+            <line x1="70" y1="20" x2="85" y2="95" />
+            <polygon points="20,25 50,5 80,25" />
+            <rect x="25" y="25" width="50" height="20" />
+            <line x1="30" y1="45" x2="30" y2="95" />
+            <line x1="40" y1="45" x2="40" y2="95" />
+            <line x1="30" y1="55" x2="40" y2="55" />
+            <line x1="30" y1="65" x2="40" y2="65" />
+            <line x1="30" y1="75" x2="40" y2="75" />
+        </svg>
+
+        <h2 style="color: var(--atayal-red);" contenteditable="true">4️⃣ 山林獵人修復之旅｜泰雅秘境 2日遊</h2>
+        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「想趁旅行適度運動、給肌力一點溫和訓練的朋友看過來！」</p>
+
+        <div class="tag-list">
+            <span class="tag-item highlight">🏋️ 溫和階梯·訓練肌力</span>
+            <span class="tag-item">🪜 無碎石路·安全慢慢走</span>
+            <span class="tag-item">♨️ 房內獨享溫泉</span>
+            <span class="tag-item">🐟 觀景窗舒適賞魚</span>
+        </div>
+
+        <div class="info-flow">
+            <div class="flow-step">
+                <div class="step-icon">🪜</div>
+                <h3 contenteditable="true">旅行＋肌力訓練</h3>
+                <p contenteditable="true">全線階梯設計、無難走碎石<br>慢慢走溫和鍛鍊，漫步檜木林</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">🐗</div>
+                <h3 contenteditable="true">獵人文化體驗</h3>
+                <p contenteditable="true">體驗手搗麻糬樂趣<br>享用炭火現烤山豬肉</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-icon">🏡</div>
+                <h3 contenteditable="true">宜蘭特色奢華宿</h3>
+                <p contenteditable="true">房內泡溫泉放鬆身心<br>地板透視窗驚喜賞魚</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 7：【互動 3】行程後抽折價券 (888) -->
+    <div class="slide">
+        <h2 contenteditable="true">想跟著莉梅姐出發了嗎？現場抽好禮！</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 10px;" contenteditable="true">跟著莉梅姐平日輕鬆出發，體驗最扎實的款待與原鄉故事</p>
+
+        <div class="interactive-card">
+            <img class="qr-image" src="L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
+            <div>
+                <p style="font-size: 1.4rem; font-weight: bold;" contenteditable="true">3️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <div class="keyword-badge" style="background-color: var(--bunun-green);" contenteditable="true">888</div>
+                <p style="color: var(--bunun-green); font-weight: bold; font-size: 1.25rem;" contenteditable="true">👉 點擊抽獎，50% 中獎率抽 $500 行程抵用券！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面 8：【Kahoot 有獎徵答頁面】-->
+    <div class="slide">
+        <h1 style="color: #4617B4; font-size: 3.2rem;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
+        <p style="font-size: 1.5rem; font-weight: bold; margin-top: 15px;" contenteditable="true">拿起手機，挑戰原鄉文化與旅遊小知識！</p>
+
+        <a href="https://play.kahoot.it/v2/lobby?quizId=f3dba909-f99b-4433-9930-6ae050bfee44" target="_blank" class="kahoot-btn">
+            🚀 點擊開啟大螢幕遊戲大廳 (Host)
+        </a>
+
+        <p style="margin-top: 25px; color: #666; font-size: 1.1rem;" contenteditable="true">
+            （點擊上方按鈕直接開啟 Kahoot 廣播大廳，顯示 PIN 碼讓現場貴賓加入遊戲）
+        </p>
+    </div>
+
+    <!-- 頁面 9：【互動 4 & 結語】攤位引導 (999) -->
+    <div class="slide">
+        <h2 contenteditable="true">不賣走馬看花，只給您滿滿的精神食糧</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 10px;" contenteditable="true">鎖定開團第一時間優先訊息推播與懶人包！</p>
+
+        <div class="interactive-card">
+            <img class="qr-image" src="L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
+            <div>
+                <p style="font-size: 1.3rem; font-weight: bold;" contenteditable="true">4️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <div class="keyword-badge" contenteditable="true">999</div>
+                <p style="color: var(--atayal-red); font-weight: bold; font-size: 1.2rem;" contenteditable="true">👉 點擊抽獎（50% 機率）及鎖定優先開團推播！</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px; font-weight: bold; color: var(--atayal-red); font-size: 1.4rem;" contenteditable="true">
+            📍 歡迎大家直接移動至【安捷/原民會攤位】找莉梅姐喝茶聊天！
+        </p>
+    </div>
+
+    <div class="totem-border-bottom"></div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">上一頁 (←)</button>
+        <button class="btn" onclick="nextSlide()">下一頁 (→)</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) slide.classList.add('active');
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.target.isContentEditable) return;
+        if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+        else if (e.key === 'ArrowLeft') prevSlide();
+    });
+</script>
+
+</body>
+</html>

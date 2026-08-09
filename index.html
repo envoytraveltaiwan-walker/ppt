@@ -10,7 +10,7 @@
             --paiwan-gold: #D98200;
             --bunun-green: #0F4022;
             --amis-orange: #E03E12;
-            --tribal-cream: #F4F1EA;
+            --tribal-cream: #FFFFFF;
             --text-dark: #000000;
         }
 
@@ -67,7 +67,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            padding: 25px 40px;
+            padding: 20px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -89,33 +89,33 @@
         }
 
         /* 超大高對比標題（抗反光） */
-        h1 { font-size: 3.4rem; color: var(--atayal-red); margin-bottom: 6px; font-weight: 900; text-shadow: 1px 1px 0px #fff; }
-        h2 { font-size: 2.6rem; color: var(--bunun-green); margin-bottom: 12px; font-weight: 800; }
+        h1 { font-size: 3.2rem; color: var(--atayal-red); margin-bottom: 4px; font-weight: 900; }
+        h2 { font-size: 2.4rem; color: var(--bunun-green); margin-bottom: 8px; font-weight: 900; }
 
         /* 手繪部落房屋背景線稿 */
         .house-line-art {
             position: absolute;
-            opacity: 0.12;
+            opacity: 0.1;
             pointer-events: none;
             transition: all 0.5s ease;
         }
 
-        .house-left { left: 10px; bottom: 8%; width: 220px; }
-        .house-right { right: 10px; bottom: 8%; width: 220px; }
+        .house-left { left: 10px; bottom: 8%; width: 200px; }
+        .house-right { right: 10px; bottom: 8%; width: 200px; }
 
-        /* 抗反光大卡片與超大 QR Code */
+        /* 抗反光大卡片與【放大 2 倍】超大 QR Code */
         .interactive-card {
             background: #FFFFFF;
-            border: 5px solid var(--paiwan-gold);
+            border: 6px solid var(--paiwan-gold);
             border-radius: 28px;
-            padding: 20px 35px;
+            padding: 15px 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 45px;
+            gap: 40px;
             margin-top: 5px;
-            width: 95%;
-            max-width: 1200px;
+            width: 96%;
+            max-width: 1350px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.18);
             transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
@@ -127,16 +127,16 @@
             border-color: var(--atayal-red);
         }
 
-        /* 超大 QR Code：340px，高對比白底與深色邊框，防止光線反射影響對焦 */
+        /* 巨型 QR Code：放大 2 倍至 450px，配合超厚對比邊框 */
         .qr-image {
-            width: 340px; 
-            height: 340px;
-            border-radius: 18px;
-            border: 6px solid var(--bunun-green);
+            width: 450px; 
+            height: 450px;
+            border-radius: 20px;
+            border: 8px solid var(--bunun-green);
             object-fit: contain;
             background: #FFFFFF;
-            padding: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
@@ -148,9 +148,9 @@
         .keyword-badge {
             background-color: var(--atayal-red);
             color: #FFFFFF;
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-weight: 900;
-            padding: 2px 42px;
+            padding: 0px 48px;
             border-radius: 24px;
             letter-spacing: 8px;
             display: inline-block;
@@ -171,7 +171,7 @@
             align-items: center;
             gap: 45px;
             width: 100%;
-            max-width: 1180px;
+            max-width: 1200px;
         }
 
         .limei-avatar-wrapper {
@@ -202,7 +202,7 @@
             justify-content: space-between;
             align-items: stretch;
             width: 100%;
-            max-width: 1180px;
+            max-width: 1200px;
             margin-top: 15px;
             gap: 20px;
             z-index: 5;
@@ -249,7 +249,7 @@
         .flow-step p {
             font-size: 1.25rem;
             color: #111111;
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.45;
         }
 
@@ -315,9 +315,9 @@
         .kahoot-btn {
             background-color: #4617B4;
             color: #FFFFFF;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
-            padding: 16px 36px;
+            padding: 16px 40px;
             border-radius: 45px;
             border: none;
             cursor: pointer;
@@ -347,11 +347,12 @@
         <h2 contenteditable="true">專做平日團·避開人潮·外賓級尊榮款待</h2>
         
         <div class="interactive-card">
+            <!-- 放大 2 倍 QR Code (450px) -->
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
-            <div style="text-align: left;">
-                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">1️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+            <div style="text-align: left; flex: 1;">
+                <p style="font-size: 2.1rem; font-weight: 900; color: #000000;" contenteditable="true">1️⃣ 打開 LINE 掃碼，留言關鍵字：</p>
                 <div class="keyword-badge" contenteditable="true">666</div>
-                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，享受 50% 中獎機會，抽 $600 行程抵用券！</p>
+                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.7rem; margin-top: 8px;" contenteditable="true">👉 點擊抽獎，50% 機率抽 $600 行程抵用券！</p>
             </div>
         </div>
     </div>
@@ -562,36 +563,37 @@
     <!-- 頁面 7：【互動 3】行程後抽折價券 (888) -->
     <div class="slide">
         <h2 contenteditable="true" style="font-size: 2.8rem;">想跟著莉梅姐出發了嗎？現場抽好禮！</h2>
-        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 10px;" contenteditable="true">跟著莉梅姐平日輕鬆出發，體驗最扎實的款待與原鄉故事</p>
+        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 8px;" contenteditable="true">跟著莉梅姐平日輕鬆出發，體驗最扎實的款待與原鄉故事</p>
 
         <div class="interactive-card">
+            <!-- 放大 2 倍 QR Code (450px) -->
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
-            <div style="text-align: left;">
-                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">3️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+            <div style="text-align: left; flex: 1;">
+                <p style="font-size: 2.1rem; font-weight: 900; color: #000000;" contenteditable="true">3️⃣ 打開 LINE 掃碼，留言關鍵字：</p>
                 <div class="keyword-badge" style="background-color: var(--bunun-green);" contenteditable="true">888</div>
-                <p style="color: var(--bunun-green); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，50% 中獎率抽 $600 行程抵用券！</p>
+                <p style="color: var(--bunun-green); font-weight: 900; font-size: 1.7rem; margin-top: 8px;" contenteditable="true">👉 點擊抽獎，50% 中獎率抽 $600 行程抵用券！</p>
             </div>
         </div>
     </div>
 
     <!-- 頁面 8：【Kahoot 有獎徵答頁面】-->
     <div class="slide">
-        <h1 style="color: #4617B4; font-size: 3.2rem; margin-bottom: 8px;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
-        <p style="font-size: 1.4rem; font-weight: 800; color: #000000; margin-bottom: 15px;" contenteditable="true">【安捷旅行】跟著莉梅姐玩原鄉有獎徵答</p>
+        <h1 style="color: #4617B4; font-size: 3.2rem; margin-bottom: 6px;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
+        <p style="font-size: 1.4rem; font-weight: 800; color: #000000; margin-bottom: 12px;" contenteditable="true">【安捷旅行】跟著莉梅姐玩原鄉有獎徵答</p>
 
-        <div style="background: #FFFFFF; border: 5px solid #4617B4; border-radius: 28px; padding: 20px 40px; width: 95%; max-width: 1150px; display: flex; align-items: center; justify-content: center; gap: 45px; box-shadow: 0 12px 35px rgba(70, 23, 180, 0.25);">
+        <div style="background: #FFFFFF; border: 6px solid #4617B4; border-radius: 28px; padding: 15px 35px; width: 96%; max-width: 1300px; display: flex; align-items: center; justify-content: center; gap: 40px; box-shadow: 0 12px 35px rgba(70, 23, 180, 0.25);">
             
-            <!-- Kahoot QR Code 放大至 320px -->
+            <!-- Kahoot 放大版 QR Code (420px) -->
             <div style="text-align: center; flex-shrink: 0;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://kahoot.it" alt="Kahoot 玩家加入 QR Code" style="width: 320px; height: 320px; border-radius: 18px; border: 6px solid #4617B4; padding: 12px; background: #FFFFFF; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-                <p style="margin-top: 10px; font-weight: 900; color: #4617B4; font-size: 1.4rem;">📱 掃碼開啟 kahoot.it</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=450x450&data=https://kahoot.it" alt="Kahoot 玩家加入 QR Code" style="width: 420px; height: 420px; border-radius: 20px; border: 8px solid #4617B4; padding: 16px; background: #FFFFFF; box-shadow: 0 12px 30px rgba(0,0,0,0.25);">
+                <p style="margin-top: 10px; font-weight: 900; color: #4617B4; font-size: 1.5rem;">📱 掃碼開啟 kahoot.it</p>
             </div>
 
             <div style="text-align: left; flex: 1;">
-                <p style="font-size: 1.6rem; font-weight: 900; color: #000000; margin-bottom: 14px;">
+                <p style="font-size: 1.8rem; font-weight: 900; color: #000000; margin-bottom: 14px;">
                     1️⃣ 現場貴賓請手機掃描左側 QR Code 或輸入 <span style="color: #4617B4; font-weight: 900;">kahoot.it</span>
                 </p>
-                <p style="font-size: 1.3rem; font-weight: 700; color: #222222; margin-bottom: 26px; line-height: 1.5;">
+                <p style="font-size: 1.4rem; font-weight: 700; color: #222222; margin-bottom: 28px; line-height: 1.5;">
                     2️⃣ 主持人點擊下方按鈕啟動大螢幕，現場民眾輸入畫面上顯示的 <b>PIN 碼</b> 即可加入搶答！
                 </p>
 
@@ -606,18 +608,19 @@
     <!-- 頁面 9：【互動 4 & 結語】攤位引導 (999) -->
     <div class="slide">
         <h2 contenteditable="true" style="font-size: 2.8rem;">不賣走馬看花，只給您滿滿的精神食糧</h2>
-        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 10px;" contenteditable="true">鎖定開團第一時間優先訊息推播與懶人包！</p>
+        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 8px;" contenteditable="true">鎖定開團第一時間優先訊息推播與懶人包！</p>
 
         <div class="interactive-card">
+            <!-- 放大 2 倍 QR Code (450px) -->
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
-            <div style="text-align: left;">
-                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">4️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+            <div style="text-align: left; flex: 1;">
+                <p style="font-size: 2.1rem; font-weight: 900; color: #000000;" contenteditable="true">4️⃣ 打開 LINE 掃碼，留言關鍵字：</p>
                 <div class="keyword-badge" contenteditable="true">999</div>
-                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎（50% 機率）及鎖定優先開團推播！</p>
+                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.7rem; margin-top: 8px;" contenteditable="true">👉 點擊抽獎（50% 機率）及鎖定優先開團推播！</p>
             </div>
         </div>
 
-        <p style="margin-top: 15px; font-weight: 900; color: var(--atayal-red); font-size: 1.6rem;" contenteditable="true">
+        <p style="margin-top: 12px; font-weight: 900; color: var(--atayal-red); font-size: 1.7rem;" contenteditable="true">
             📍 歡迎大家直接移動至【安捷/原民會攤位】找莉梅姐喝茶聊天！
         </p>
     </div>

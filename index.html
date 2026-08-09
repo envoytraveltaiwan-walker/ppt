@@ -6,12 +6,12 @@
     <title>安捷國際旅行社 - 高齡健康產業博覽會互動簡報</title>
     <style>
         :root {
-            --atayal-red: #8B261D;
-            --paiwan-gold: #C68B34;
-            --bunun-green: #1E3A2B;
-            --amis-orange: #D9532F;
-            --tribal-cream: #F9F6F0;
-            --text-dark: #231F1D;
+            --atayal-red: #A81B0E;
+            --paiwan-gold: #D98200;
+            --bunun-green: #0F4022;
+            --amis-orange: #E03E12;
+            --tribal-cream: #F4F1EA;
+            --text-dark: #000000;
         }
 
         * {
@@ -22,7 +22,7 @@
         }
 
         body {
-            background-color: #12100F;
+            background-color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -39,9 +39,9 @@
             max-height: 100vh;
             background-color: var(--tribal-cream);
             position: relative;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.8);
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         /* 原民織帶與邊框 */
@@ -49,13 +49,13 @@
             position: absolute;
             left: 0;
             width: 100%;
-            height: 14px;
+            height: 16px;
             background: repeating-linear-gradient(
                 45deg,
-                var(--atayal-red), var(--atayal-red) 12px,
-                var(--paiwan-gold) 12px, var(--paiwan-gold) 24px,
-                var(--bunun-green) 24px, var(--bunun-green) 36px,
-                var(--amis-orange) 36px, var(--amis-orange) 48px
+                var(--atayal-red), var(--atayal-red) 14px,
+                var(--paiwan-gold) 14px, var(--paiwan-gold) 28px,
+                var(--bunun-green) 28px, var(--bunun-green) 42px,
+                var(--amis-orange) 42px, var(--amis-orange) 56px
             );
             z-index: 10;
         }
@@ -67,14 +67,14 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            padding: 30px 50px;
+            padding: 25px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
             text-align: center;
         }
 
@@ -84,77 +84,78 @@
         }
 
         [contenteditable="true"]:hover {
-            outline: 2px dashed var(--paiwan-gold);
-            border-radius: 4px;
+            outline: 3px dashed var(--paiwan-gold);
+            border-radius: 6px;
         }
 
-        h1 { font-size: 2.8rem; color: var(--atayal-red); margin-bottom: 8px; font-weight: 800; }
-        h2 { font-size: 2.2rem; color: var(--bunun-green); margin-bottom: 14px; font-weight: 700; }
+        /* 超大高對比標題（抗反光） */
+        h1 { font-size: 3.4rem; color: var(--atayal-red); margin-bottom: 6px; font-weight: 900; text-shadow: 1px 1px 0px #fff; }
+        h2 { font-size: 2.6rem; color: var(--bunun-green); margin-bottom: 12px; font-weight: 800; }
 
-        /* 手繪部落房屋與圖騰背景線稿 */
+        /* 手繪部落房屋背景線稿 */
         .house-line-art {
             position: absolute;
-            opacity: 0.18;
+            opacity: 0.12;
             pointer-events: none;
             transition: all 0.5s ease;
         }
 
-        .house-left { left: 15px; bottom: 10%; width: 230px; }
-        .house-right { right: 15px; bottom: 10%; width: 230px; }
+        .house-left { left: 10px; bottom: 8%; width: 220px; }
+        .house-right { right: 10px; bottom: 8%; width: 220px; }
 
-        /* 專為遠距離優化的超大 QR Code 互動卡片 */
+        /* 抗反光大卡片與超大 QR Code */
         .interactive-card {
-            background: rgba(255, 255, 255, 0.98);
-            border: 4px solid var(--paiwan-gold);
-            border-radius: 24px;
-            padding: 20px 40px;
+            background: #FFFFFF;
+            border: 5px solid var(--paiwan-gold);
+            border-radius: 28px;
+            padding: 20px 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
-            margin-top: 10px;
-            width: 92%;
-            max-width: 1100px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            gap: 45px;
+            margin-top: 5px;
+            width: 95%;
+            max-width: 1200px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
             transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
         }
 
         .interactive-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 35px rgba(198, 139, 52, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(168, 27, 14, 0.25);
             border-color: var(--atayal-red);
         }
 
-        /* 大幅放大 QR Code 尺寸，確保後排觀眾輕鬆掃描 */
+        /* 超大 QR Code：340px，高對比白底與深色邊框，防止光線反射影響對焦 */
         .qr-image {
-            width: 280px; 
-            height: 280px;
-            border-radius: 16px;
-            border: 4px solid var(--bunun-green);
+            width: 340px; 
+            height: 340px;
+            border-radius: 18px;
+            border: 6px solid var(--bunun-green);
             object-fit: contain;
-            background: #ffffff;
-            padding: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background: #FFFFFF;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
 
         .interactive-card:hover .qr-image {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         .keyword-badge {
             background-color: var(--atayal-red);
-            color: #fff;
-            font-size: 4.2rem;
+            color: #FFFFFF;
+            font-size: 5rem;
             font-weight: 900;
-            padding: 4px 36px;
-            border-radius: 20px;
-            letter-spacing: 6px;
+            padding: 2px 42px;
+            border-radius: 24px;
+            letter-spacing: 8px;
             display: inline-block;
-            margin: 12px 0;
-            box-shadow: 0 6px 18px rgba(139, 38, 29, 0.35);
+            margin: 10px 0;
+            box-shadow: 0 8px 22px rgba(168, 27, 14, 0.4);
             animation: pulse 1.5s infinite;
         }
 
@@ -164,56 +165,56 @@
             100% { transform: scale(1); }
         }
 
-        /* 莉梅姐去背圓形大頭照與卡片 */
+        /* 品牌頁面放大版 */
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 45px;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1180px;
         }
 
         .limei-avatar-wrapper {
-            flex: 0 0 240px;
+            flex: 0 0 260px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .limei-avatar {
-            width: 220px; height: 220px;
+            width: 250px; height: 250px;
             border-radius: 50%;
-            border: 6px solid var(--paiwan-gold);
+            border: 7px solid var(--paiwan-gold);
             object-fit: cover;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
-            background-color: #fff;
+            background-color: #FFFFFF;
         }
 
         .limei-avatar-wrapper:hover .limei-avatar {
-            transform: scale(1.06) rotate(2deg);
+            transform: scale(1.05) rotate(2deg);
             border-color: var(--atayal-red);
         }
 
-        /* Infographic 卡片與 Hover 動畫 */
+        /* Infographic 卡片放大版 */
         .info-flow {
             display: flex;
             justify-content: space-between;
             align-items: stretch;
             width: 100%;
-            max-width: 1100px;
-            margin-top: 20px;
-            gap: 18px;
+            max-width: 1180px;
+            margin-top: 15px;
+            gap: 20px;
             z-index: 5;
         }
 
         .flow-step {
             flex: 1;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 18px;
-            padding: 20px 16px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            border-top: 6px solid var(--atayal-red);
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 22px 18px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--atayal-red);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -223,14 +224,13 @@
         }
 
         .flow-step:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.15);
             border-top-color: var(--amis-orange);
-            background: #ffffff;
         }
 
         .flow-step .step-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 8px;
             transition: transform 0.3s ease;
         }
@@ -240,36 +240,38 @@
         }
 
         .flow-step h3 {
-            font-size: 1.35rem;
+            font-size: 1.6rem;
             color: var(--atayal-red);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-weight: 800;
         }
 
         .flow-step p {
-            font-size: 1.05rem;
-            color: #444;
-            line-height: 1.4;
+            font-size: 1.25rem;
+            color: #111111;
+            font-weight: 600;
+            line-height: 1.45;
         }
 
-        /* 亮點標籤列表 */
+        /* 標籤放大版 */
         .tag-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
             margin-top: 10px;
-            max-width: 1050px;
+            max-width: 1150px;
             z-index: 5;
         }
 
         .tag-item {
             background-color: var(--bunun-green);
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 8px 22px;
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            font-weight: 800;
+            padding: 10px 26px;
+            border-radius: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -288,18 +290,19 @@
             bottom: 20px;
             right: 30px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             z-index: 100;
         }
 
         .btn {
             background-color: var(--bunun-green);
-            color: #fff;
+            color: #FFFFFF;
             border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
+            font-weight: bold;
             transition: all 0.3s ease;
         }
 
@@ -308,27 +311,27 @@
             transform: scale(1.05);
         }
 
-        /* Kahoot 按鈕樣式 */
+        /* Kahoot 按鈕樣式放大 */
         .kahoot-btn {
             background-color: #4617B4;
-            color: #ffffff;
-            font-size: 1.35rem;
-            font-weight: bold;
-            padding: 14px 32px;
-            border-radius: 40px;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            font-weight: 900;
+            padding: 16px 36px;
+            border-radius: 45px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(70, 23, 180, 0.3);
+            box-shadow: 0 10px 25px rgba(70, 23, 180, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .kahoot-btn:hover {
             transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 12px 25px rgba(70, 23, 180, 0.5);
+            box-shadow: 0 14px 30px rgba(70, 23, 180, 0.6);
             background-color: #5B25D9;
         }
     </style>
@@ -346,40 +349,40 @@
         <div class="interactive-card">
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
             <div style="text-align: left;">
-                <p style="font-size: 1.5rem; font-weight: bold; color: #231F1D;" contenteditable="true">1️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">1️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
                 <div class="keyword-badge" contenteditable="true">666</div>
-                <p style="color: var(--atayal-red); font-weight: bold; font-size: 1.35rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，享受 50% 中獎機會，抽 $600 行程抵用券！</p>
+                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，享受 50% 中獎機會，抽 $600 行程抵用券！</p>
             </div>
         </div>
     </div>
 
     <!-- 頁面 2：品牌背景與莉梅姐 -->
     <div class="slide">
-        <h2 contenteditable="true" style="font-size: 2.2rem; color: var(--bunun-green); margin-bottom: 12px; font-weight: 800;">企業級頂級私房行程公開！誠邀質感旅人體驗精品小團</h2>
+        <h2 contenteditable="true" style="font-size: 2.5rem; color: var(--bunun-green); margin-bottom: 15px; font-weight: 900;">企業級頂級私房行程公開！誠邀質感旅人體驗精品小團</h2>
         
         <div class="brand-container">
             <div class="limei-avatar-wrapper">
                 <img class="limei-avatar" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/%E8%8E%89%E6%A2%85%E5%A7%90.png" alt="靈魂引路人 莉梅姐">
-                <p style="margin-top: 12px; font-weight: bold; font-size: 1.2rem; color: var(--atayal-red);">靈魂引路人：莉梅姐</p>
+                <p style="margin-top: 12px; font-weight: 900; font-size: 1.4rem; color: var(--atayal-red);">靈魂引路人：莉梅姐</p>
             </div>
             
             <div style="flex: 1; text-align: left;">
-                <p style="font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; color: var(--bunun-green); line-height: 1.5;" contenteditable="true">
+                <p style="font-size: 1.45rem; margin-bottom: 22px; font-weight: 800; color: var(--bunun-green); line-height: 1.5;" contenteditable="true">
                     🌟 深耕旅遊 35 年經驗，源自法國、香港企業的獨家訂製規格，這次，為喜愛精緻旅遊的你限量啟航。
                 </p>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-                    <div class="flow-step" style="padding:15px; border-top-width:4px;">
-                        <strong style="color:var(--atayal-red); font-size:1.15rem;">1. 家人般款待</strong><br><span style="font-size:0.95rem;">老朋友般的熱情照顧</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="flow-step" style="padding:18px; border-top-width:6px;">
+                        <strong style="color:var(--atayal-red); font-size:1.35rem;">1. 家人般款待</strong><br><span style="font-size:1.15rem; font-weight:700;">老朋友般的熱情照顧</span>
                     </div>
-                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--paiwan-gold);">
-                        <strong style="color:var(--atayal-red); font-size:1.15rem;">2. 團友屬性訪談</strong><br><span style="font-size:0.95rem;">獨旅也能配對舒適夥伴</span>
+                    <div class="flow-step" style="padding:18px; border-top-width:6px; border-top-color:var(--paiwan-gold);">
+                        <strong style="color:var(--atayal-red); font-size:1.35rem;">2. 團友屬性訪談</strong><br><span style="font-size:1.15rem; font-weight:700;">獨旅也能配對舒適夥伴</span>
                     </div>
-                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--bunun-green);">
-                        <strong style="color:var(--atayal-red); font-size:1.15rem;">3. 視訊說明會</strong><br><span style="font-size:0.95rem;">行前說明在家輕鬆聽</span>
+                    <div class="flow-step" style="padding:18px; border-top-width:6px; border-top-color:var(--bunun-green);">
+                        <strong style="color:var(--atayal-red); font-size:1.35rem;">3. 視訊說明會</strong><br><span style="font-size:1.15rem; font-weight:700;">行前說明在家輕鬆聽</span>
                     </div>
-                    <div class="flow-step" style="padding:15px; border-top-width:4px; border-top-color:var(--amis-orange);">
-                        <strong style="color:var(--atayal-red); font-size:1.15rem;">4. 人生故事交流</strong><br><span style="font-size:0.95rem;">特別梯次星空下分享交流</span>
+                    <div class="flow-step" style="padding:18px; border-top-width:6px; border-top-color:var(--amis-orange);">
+                        <strong style="color:var(--atayal-red); font-size:1.35rem;">4. 人生故事交流</strong><br><span style="font-size:1.15rem; font-weight:700;">特別梯次星空下分享交流</span>
                     </div>
                 </div>
             </div>
@@ -388,7 +391,7 @@
 
     <!-- 頁面 3：【行程一】排灣族石板屋與琉璃百步蛇線稿 -->
     <div class="slide">
-        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#C68B34" stroke-width="2" fill="none">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#D98200" stroke-width="2" fill="none">
             <polygon points="10,80 10,45 60,20 110,45 110,80" />
             <line x1="10" y1="45" x2="110" y2="45" />
             <line x1="30" y1="45" x2="30" y2="80" />
@@ -396,16 +399,16 @@
             <line x1="70" y1="45" x2="70" y2="80" />
             <line x1="90" y1="45" x2="90" y2="80" />
             <rect x="45" y="55" width="30" height="25" />
-            <polygon points="60,25 70,35 60,45 50,35" stroke="#8B261D" />
+            <polygon points="60,25 70,35 60,45 50,35" stroke="#A81B0E" />
         </svg>
 
-        <svg class="house-line-art house-right" viewBox="0 0 100 100" stroke="#8B261D" stroke-width="2" fill="none">
+        <svg class="house-line-art house-right" viewBox="0 0 100 100" stroke="#A81B0E" stroke-width="2" fill="none">
             <path d="M10,80 Q30,50 50,80 T90,80" stroke-width="3" />
-            <polygon points="50,15 75,40 50,65 25,40" stroke="#C68B34" />
+            <polygon points="50,15 75,40 50,65 25,40" stroke="#D98200" />
         </svg>
 
         <h2 style="color: var(--atayal-red);" contenteditable="true">1️⃣ 跟著山海去呼吸｜8日心靈行旅</h2>
-        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「想一口氣走遍排灣、布農、阿美、泰雅四大族群嗎？」</p>
+        <p style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 12px;" contenteditable="true">「想一口氣走遍排灣、布農、阿美、泰雅四大族群嗎？」</p>
 
         <div class="tag-list">
             <span class="tag-item highlight">🌲 巨木檜木林</span>
@@ -435,7 +438,7 @@
 
     <!-- 頁面 4：【行程二】干欄式茅草高腳屋與山林浪線 -->
     <div class="slide">
-        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#1E3A2B" stroke-width="2" fill="none">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#0F4022" stroke-width="2" fill="none">
             <line x1="25" y1="50" x2="20" y2="85" />
             <line x1="45" y1="50" x2="45" y2="85" />
             <line x1="75" y1="50" x2="75" y2="85" />
@@ -446,7 +449,7 @@
         </svg>
 
         <h2 style="color: var(--bunun-green);" contenteditable="true">2️⃣ 低碳縱谷·雙湯慢旅｜花東 3日遊</h2>
-        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「出門旅行不想舟車勞頓、想好好泡湯對不對？」</p>
+        <p style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 12px;" contenteditable="true">「出門旅行不想舟車勞頓、想好好泡湯對不對？」</p>
 
         <div class="tag-list">
             <span class="tag-item">🚆 搭台鐵換專車</span>
@@ -476,16 +479,16 @@
 
     <!-- 頁面 5：【行程三】泰雅高腳獵寮與櫻花祖靈紋線稿 -->
     <div class="slide">
-        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#8B261D" stroke-width="2" fill="none">
+        <svg class="house-line-art house-left" viewBox="0 0 120 100" stroke="#A81B0E" stroke-width="2" fill="none">
             <polygon points="20,40 60,15 100,40" />
             <rect x="25" y="40" width="70" height="30" />
             <line x1="30" y1="70" x2="30" y2="90" />
             <line x1="90" y1="70" x2="90" y2="90" />
-            <polygon points="60,45 70,55 60,65 50,55" stroke="#D9532F" />
+            <polygon points="60,45 70,55 60,65 50,55" stroke="#E03E12" />
         </svg>
 
         <h2 style="color: var(--atayal-red);" contenteditable="true">3️⃣ 白蘭櫻花雨｜櫻花樹下泰雅微旅行 2日遊</h2>
-        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「怕去賞櫻花全都是人、拍照全是後腦勺嗎？」</p>
+        <p style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 12px;" contenteditable="true">「怕去賞櫻花全都是人、拍照全是後腦勺嗎？」</p>
 
         <div class="tag-list">
             <span class="tag-item highlight">🌸 提前預約 2027 年場次（2月~3月限定）</span>
@@ -515,7 +518,7 @@
 
     <!-- 頁面 6：【行程四】泰雅秘境 -->
     <div class="slide">
-        <svg class="house-line-art house-left" viewBox="0 0 100 110" stroke="#8B261D" stroke-width="2" fill="none">
+        <svg class="house-line-art house-left" viewBox="0 0 100 110" stroke="#A81B0E" stroke-width="2" fill="none">
             <line x1="30" y1="20" x2="15" y2="95" />
             <line x1="70" y1="20" x2="85" y2="95" />
             <polygon points="20,25 50,5 80,25" />
@@ -528,7 +531,7 @@
         </svg>
 
         <h2 style="color: var(--atayal-red);" contenteditable="true">4️⃣ 山林獵人修復之旅｜泰雅秘境 2日遊</h2>
-        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 10px;" contenteditable="true">「想趁旅行適度運動、給肌力一點溫和訓練的朋友看過來！」</p>
+        <p style="font-size: 1.6rem; font-weight: 800; color: #000000; margin-bottom: 12px;" contenteditable="true">「想趁旅行適度運動、給肌力一點溫和訓練的朋友看過來！」</p>
 
         <div class="tag-list">
             <span class="tag-item highlight">🏋️ 溫和階梯·訓練肌力</span>
@@ -558,37 +561,37 @@
 
     <!-- 頁面 7：【互動 3】行程後抽折價券 (888) -->
     <div class="slide">
-        <h2 contenteditable="true">想跟著莉梅姐出發了嗎？現場抽好禮！</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 10px;" contenteditable="true">跟著莉梅姐平日輕鬆出發，體驗最扎實的款待與原鄉故事</p>
+        <h2 contenteditable="true" style="font-size: 2.8rem;">想跟著莉梅姐出發了嗎？現場抽好禮！</h2>
+        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 10px;" contenteditable="true">跟著莉梅姐平日輕鬆出發，體驗最扎實的款待與原鄉故事</p>
 
         <div class="interactive-card">
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
             <div style="text-align: left;">
-                <p style="font-size: 1.5rem; font-weight: bold; color: #231F1D;" contenteditable="true">3️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">3️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
                 <div class="keyword-badge" style="background-color: var(--bunun-green);" contenteditable="true">888</div>
-                <p style="color: var(--bunun-green); font-weight: bold; font-size: 1.35rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，50% 中獎率抽 $600 行程抵用券！</p>
+                <p style="color: var(--bunun-green); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎，50% 中獎率抽 $600 行程抵用券！</p>
             </div>
         </div>
     </div>
 
     <!-- 頁面 8：【Kahoot 有獎徵答頁面】-->
     <div class="slide">
-        <h1 style="color: #4617B4; font-size: 2.8rem; margin-bottom: 10px;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
-        <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;" contenteditable="true">【安捷旅行】跟著莉梅姐玩原鄉有獎徵答</p>
+        <h1 style="color: #4617B4; font-size: 3.2rem; margin-bottom: 8px;" contenteditable="true">🎮 現場 Kahoot! 趣味有獎徵答</h1>
+        <p style="font-size: 1.4rem; font-weight: 800; color: #000000; margin-bottom: 15px;" contenteditable="true">【安捷旅行】跟著莉梅姐玩原鄉有獎徵答</p>
 
-        <div style="background: rgba(255, 255, 255, 0.98); border: 4px solid #4617B4; border-radius: 24px; padding: 20px 40px; width: 92%; max-width: 1050px; display: flex; align-items: center; justify-content: center; gap: 40px; box-shadow: 0 10px 30px rgba(70, 23, 180, 0.2);">
+        <div style="background: #FFFFFF; border: 5px solid #4617B4; border-radius: 28px; padding: 20px 40px; width: 95%; max-width: 1150px; display: flex; align-items: center; justify-content: center; gap: 45px; box-shadow: 0 12px 35px rgba(70, 23, 180, 0.25);">
             
-            <!-- 現場民眾手機掃碼開啟 kahoot.it (放大為 260px) -->
+            <!-- Kahoot QR Code 放大至 320px -->
             <div style="text-align: center; flex-shrink: 0;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://kahoot.it" alt="Kahoot 玩家加入 QR Code" style="width: 260px; height: 260px; border-radius: 16px; border: 4px solid #4617B4; padding: 8px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
-                <p style="margin-top: 8px; font-weight: bold; color: #4617B4; font-size: 1.2rem;">📱 掃碼開啟 kahoot.it</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://kahoot.it" alt="Kahoot 玩家加入 QR Code" style="width: 320px; height: 320px; border-radius: 18px; border: 6px solid #4617B4; padding: 12px; background: #FFFFFF; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                <p style="margin-top: 10px; font-weight: 900; color: #4617B4; font-size: 1.4rem;">📱 掃碼開啟 kahoot.it</p>
             </div>
 
             <div style="text-align: left; flex: 1;">
-                <p style="font-size: 1.35rem; font-weight: bold; color: #333; margin-bottom: 12px;">
-                    1️⃣ 現場貴賓請手機掃描左側 QR Code 或輸入 <span style="color: #4617B4;">kahoot.it</span>
+                <p style="font-size: 1.6rem; font-weight: 900; color: #000000; margin-bottom: 14px;">
+                    1️⃣ 現場貴賓請手機掃描左側 QR Code 或輸入 <span style="color: #4617B4; font-weight: 900;">kahoot.it</span>
                 </p>
-                <p style="font-size: 1.15rem; color: #555; margin-bottom: 24px; line-height: 1.5;">
+                <p style="font-size: 1.3rem; font-weight: 700; color: #222222; margin-bottom: 26px; line-height: 1.5;">
                     2️⃣ 主持人點擊下方按鈕啟動大螢幕，現場民眾輸入畫面上顯示的 <b>PIN 碼</b> 即可加入搶答！
                 </p>
 
@@ -602,19 +605,19 @@
 
     <!-- 頁面 9：【互動 4 & 結語】攤位引導 (999) -->
     <div class="slide">
-        <h2 contenteditable="true">不賣走馬看花，只給您滿滿的精神食糧</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 10px;" contenteditable="true">鎖定開團第一時間優先訊息推播與懶人包！</p>
+        <h2 contenteditable="true" style="font-size: 2.8rem;">不賣走馬看花，只給您滿滿的精神食糧</h2>
+        <p style="font-size: 1.5rem; font-weight: 800; color: #000000; margin-bottom: 10px;" contenteditable="true">鎖定開團第一時間優先訊息推播與懶人包！</p>
 
         <div class="interactive-card">
             <img class="qr-image" src="https://raw.githubusercontent.com/envoytraveltaiwan-walker/ppt/main/L_gainfriends_2dbarcodes_GW.png" alt="LINE OA QR Code">
             <div style="text-align: left;">
-                <p style="font-size: 1.5rem; font-weight: bold; color: #231F1D;" contenteditable="true">4️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
+                <p style="font-size: 1.8rem; font-weight: 900; color: #000000;" contenteditable="true">4️⃣ 打開 LINE 掃碼，留言輸入關鍵字：</p>
                 <div class="keyword-badge" contenteditable="true">999</div>
-                <p style="color: var(--atayal-red); font-weight: bold; font-size: 1.35rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎（50% 機率）及鎖定優先開團推播！</p>
+                <p style="color: var(--atayal-red); font-weight: 900; font-size: 1.5rem; margin-top: 4px;" contenteditable="true">👉 點擊抽獎（50% 機率）及鎖定優先開團推播！</p>
             </div>
         </div>
 
-        <p style="margin-top: 15px; font-weight: bold; color: var(--atayal-red); font-size: 1.4rem;" contenteditable="true">
+        <p style="margin-top: 15px; font-weight: 900; color: var(--atayal-red); font-size: 1.6rem;" contenteditable="true">
             📍 歡迎大家直接移動至【安捷/原民會攤位】找莉梅姐喝茶聊天！
         </p>
     </div>
